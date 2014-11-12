@@ -727,7 +727,9 @@ module DocusignRest
         templateId:         options[:template_id],
         eventNotification:  get_event_notification(options[:event_notification]),
         templateRoles:      get_template_roles(options[:signers]),
-        customFields:       options[:custom_fields]
+        customFields:       options[:custom_fields],
+        allowReassign:      (options[:allow_reassign] || true ),
+        enableWetSign:      (options[:enable_wet_sign] || true ),
       }.to_json
 
       uri = build_uri("/accounts/#{acct_id}/envelopes")
