@@ -226,9 +226,6 @@ module DocusignRest
       signers.each_with_index do |signer, index|
         # Convert all signer keys since all references use symbols
         signer = signer.deep_symbolize_keys
-
-        ap "SIGNER:"
-        ap signer
         template_role = {
           name:     signer[:name],
           email:    signer[:email],
@@ -269,8 +266,6 @@ module DocusignRest
     # TODO (2014-02-03) jonk => document
     def get_signer_tabs(tabs)
       Array(tabs).map do |tab|
-        ap "TAB:"
-        ap tab
         {
           'tabLabel'   => tab[:label],
           'name'       => tab[:name],
@@ -929,8 +924,6 @@ module DocusignRest
       http = initialize_net_http_ssl(uri)
 
       request = Net::HTTP::Post.new(uri.request_uri, headers(content_type))
-      ap "BODY:"
-      ap post_body
       request.body = post_body
 
       response = http.request(request)
