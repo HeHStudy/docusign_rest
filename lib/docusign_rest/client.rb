@@ -224,6 +224,8 @@ module DocusignRest
     def get_template_roles(signers)
       template_roles = []
       signers.each_with_index do |signer, index|
+        ap "SIGNER:"
+        ap signer
         template_role = {
           name:     signer[:name],
           email:    signer[:email],
@@ -264,6 +266,8 @@ module DocusignRest
     # TODO (2014-02-03) jonk => document
     def get_signer_tabs(tabs)
       Array(tabs).map do |tab|
+        ap "TAB:"
+        ap tab
         {
           'tabLabel' => tab[:label],
           'name' => tab[:name],
