@@ -224,6 +224,8 @@ module DocusignRest
     def get_template_roles(signers)
       template_roles = []
       signers.each_with_index do |signer, index|
+        # Convert all signer keys since all references use symbols
+        signer = signer.deep_symbolize_keys
         template_role = {
           name:     signer[:name],
           email:    signer[:email],
@@ -265,12 +267,12 @@ module DocusignRest
     def get_signer_tabs(tabs)
       Array(tabs).map do |tab|
         {
-          'tabLabel' => tab[:label],
-          'name' => tab[:name],
-          'value' => tab[:value],
+          'tabLabel'   => tab[:label],
+          'name'       => tab[:name],
+          'value'      => tab[:value],
           'documentId' => tab[:document_id],
-          'selected' => tab[:selected],
-          'locked' => tab[:locked]
+          'selected'   => tab[:selected],
+          'locked'     => tab[:locked]
         }
       end
     end
